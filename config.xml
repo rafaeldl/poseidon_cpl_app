@@ -2,10 +2,10 @@
 <widget id="com.somadl.android.pedidos" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Pedidos</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Aplicativo de vedas Poseidon
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="contato@somadl.com.br" href="http://www.somadl.com.br">
+        SomaDL
     </author>
     <content src="index.html" />
     <access origin="*" />

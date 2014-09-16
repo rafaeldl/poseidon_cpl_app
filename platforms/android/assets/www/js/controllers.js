@@ -1,6 +1,12 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $location) {
+
+  if (window.SEND_TIMEOUT)
+  {
+     clearTimeout(SEND_TIMEOUT);
+  }
+
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -58,10 +64,6 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-        console.log($stateParams);
-})
-
 .controller('LoginCtrl', function($scope, $http, $ionicSideMenuDelegate) {
 
     $ionicSideMenuDelegate.canDragContent(false);
@@ -103,7 +105,33 @@ angular.module('starter.controllers', [])
     };
 })
 
+.controller('PedidoListCtrl', function($scope, $http, $stateParams) {
+    $scope.pedidos = $localData.findAll($http, 'pedidos');
+    $scope.roteiros = {};    
+    $scope.helpers = $helpers;    
+    $scope.deleteItem = function(pedido)
+    {
+        if (!confirm('Deseja mesmo excluir este pedido?'))
+        {
+            return 0;
+        }        
+        var roteiro = $scope.roteiros[pedido.__roteiro];
+        roteiro.status_pedidos = STATUS_NOT_SENT;
+        roteiro.errors = '';
+        $localData.update($http, 'roteiros', 'sequencia', roteiro);
+        $localData.delete($http, 'pedidos', '__id', pedido.__id);
+        $scope.pedidos = $localData.findAll($http, 'pedidos');        
+    };
+    var roteiro;
+    for (var i in $scope.pedidos)
+    {
+        roteiro = $scope.pedidos[i].__roteiro;
+        $scope.roteiros[roteiro] = $localData.find($http, 'roteiros', 'sequencia', roteiro);        
+    }
+})
+
 .controller('PedidoCtrl', function($scope, $http, $stateParams) {
+    $scope.inEdition = $stateParams['pedidoId'];
     $scope.helpers = $helpers;
     $scope.roteiro = $localData.find($http, 'roteiros', 'sequencia', $stateParams['roteiroId']);
     $scope.pedido = {c5_tipoped: 'N', c5_prtabel: '', c5_limpeza: ''};
@@ -120,8 +148,8 @@ angular.module('starter.controllers', [])
         var result = produto.qtd + value;
         if (result)
         {
-            produto.qtd += value;        
-            $scope.itemOk();    
+            produto.qtd += value;
+            $scope.itemOk();
         }        
     }
     $scope.deleteItem = function(produto)
@@ -177,6 +205,7 @@ angular.module('starter.controllers', [])
         $scope.pedido.c5_tabela = roteiro.tabela;
         $scope.pedido.c5_zfrec = roteiro.zfrec;
         $scope.pedido.__roteiro = roteiro.sequencia;
+        $scope.pedido.__total = $scope.total;
         for (var i in $scope.produtos)
         {
             var item = $scope.produtos[i];
@@ -215,11 +244,26 @@ angular.module('starter.controllers', [])
             }
         }
 
-
         $localData.update($http, 'roteiros', 'sequencia', roteiro);
         var list = $localData.findAll($http, 'pedidos', false);
-        $scope.pedido.__id = list.length+1;
-        list.push($scope.pedido);
+
+        if (!$scope.inEdition)
+        {
+            $scope.pedido.__id = list.length+1;
+            list.push($scope.pedido);    
+        }
+
+        var salvaPedido = function(pedido)
+        {
+            if ($scope.inEdition)
+            {
+                $localData.update($http, 'pedidos', '__id', pedido);   
+            }
+            else
+            {
+                $localData.saveAll(list, 'pedidos');
+            }
+        };
 
         window.syncronize = true;
         if (navigator && navigator.geolocation)
@@ -230,11 +274,11 @@ angular.module('starter.controllers', [])
                 function(position) {
                     $scope.pedido.c5_zlatitu = position.coords.latitude.toFixedDown(9);
                     $scope.pedido.c5_zlongit = position.coords.longitude.toFixedDown(9);
-                    $localData.saveAll(list, 'pedidos');
+                    salvaPedido($scope.pedido);
                     window.location = '#/app/roteiros';
                 },
                 function(error){
-                    $localData.saveAll(list, 'pedidos');
+                    salvaPedido($scope.pedido);
                     window.location = '#/app/roteiros';
                 },
                 {
@@ -246,11 +290,35 @@ angular.module('starter.controllers', [])
         }
         else
         {
-            $localData.saveAll(list, 'pedidos');
+            salvaPedido($scope.pedido);
             window.location = '#/app/roteiros';
         }
-
     };
+
+    /*
+     * Carrega pedido para edição
+     */
+    if ($scope.inEdition != '0')
+    {        
+        $scope.pedido = $localData.find($http, 'pedidos', '__id', $scope.inEdition);
+        $scope.total = $scope.pedido.__total;
+        var item;
+        for (var i in $scope.pedido.pedido_items)
+        {
+            item = $scope.pedido.pedido_items[i];
+            for (var j in $scope.produtos)
+            {
+                if ($scope.produtos[j].codigo == item.c6_produto)
+                {
+                    $scope.produtos[j].qtd = item.c6_qtdven;
+                }
+            }
+        }
+    }
+    else
+    {
+        $scope.inEdition = false;
+    }
 })
 
 .controller('RoteirosCtrl', function($scope, $http) {
@@ -326,17 +394,30 @@ angular.module('starter.controllers', [])
         });     
     };
     loadRoteiros();
-
-
-    $localData.findAll($http, 'clientes', false);
-
+    
+    /*
+     * Carrega Evetos
+     */
+    $scope.sendingData = true;
     $localData.defaultQuery($http, 'AC5', function(response){
         $localData.saveAll(response.data, 'eventos');
+
+        /*
+         * Carrega Familias de produtos
+         */
+        $localData.defaultQuery($http, 'Z1', function(response){
+            $localData.saveAll(response.data, 'produto-familias');
+            $scope.sendingData = false;
+
+            /*
+             * Carrega Clientes             
+            $localData.genericQuery($http, 'sa1', function(response){
+                $localData.saveAll(response.data, 'clientes');                
+            });*/
+        });
     });
 
-    $localData.defaultQuery($http, 'Z1', function(response){
-        $localData.saveAll(response.data, 'produto-familias');
-    });
+    
 
     /*
      * Send button
@@ -347,8 +428,7 @@ angular.module('starter.controllers', [])
     sendButton.style.right = '8px';
     sendButton.style.top = '8px';
     var header = document.getElementsByTagName('ion-nav-bar')[0];
-    //header.appendChild(sendButton);
-    $scope.sendingData = false;
+    //header.appendChild(sendButton);    
     $scope.sendData = function()
     {
         $scope.sendModels('pedidos', 'pedido', function(){
@@ -441,7 +521,10 @@ angular.module('starter.controllers', [])
         send(function(){
             $scope.sendingData = false;
             loadRoteiros();
-            success();
+            if (success)
+            {
+                success();    
+            }            
         });
     };
 
@@ -456,7 +539,7 @@ angular.module('starter.controllers', [])
     /*
      * Sincroniza em 5 mins
      */
-    setTimeout(function(){
+    var SEND_TIMEOUT = setTimeout(function(){
         $scope.sendData();
     }, 60000);
 

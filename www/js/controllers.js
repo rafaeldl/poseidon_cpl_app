@@ -394,17 +394,30 @@ angular.module('starter.controllers', [])
         });     
     };
     loadRoteiros();
-
-
-    $localData.findAll($http, 'clientes', false);
-
+    
+    /*
+     * Carrega Evetos
+     */
+    $scope.sendingData = true;
     $localData.defaultQuery($http, 'AC5', function(response){
         $localData.saveAll(response.data, 'eventos');
+
+        /*
+         * Carrega Familias de produtos
+         */
+        $localData.defaultQuery($http, 'Z1', function(response){
+            $localData.saveAll(response.data, 'produto-familias');
+            $scope.sendingData = false;
+
+            /*
+             * Carrega Clientes             
+            $localData.genericQuery($http, 'sa1', function(response){
+                $localData.saveAll(response.data, 'clientes');                
+            });*/
+        });
     });
 
-    $localData.defaultQuery($http, 'Z1', function(response){
-        $localData.saveAll(response.data, 'produto-familias');
-    });
+    
 
     /*
      * Send button
@@ -415,8 +428,7 @@ angular.module('starter.controllers', [])
     sendButton.style.right = '8px';
     sendButton.style.top = '8px';
     var header = document.getElementsByTagName('ion-nav-bar')[0];
-    //header.appendChild(sendButton);
-    $scope.sendingData = false;
+    //header.appendChild(sendButton);    
     $scope.sendData = function()
     {
         $scope.sendModels('pedidos', 'pedido', function(){

@@ -12,7 +12,8 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "org.apache.cordova.vibration": "0.3.11-dev"
+    "org.apache.cordova.vibration": "0.3.11-dev",
+    "org.apache.cordova.geolocation": "0.3.9"
 }
 // BOTTOM OF METADATA
 });

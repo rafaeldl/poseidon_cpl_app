@@ -14,7 +14,8 @@ API_URL = 'http://portal.cplkibon.com.br';
 API_URLS = {
     produtos: API_URL+'/pedidos/produtos.json',
     roteiros: API_URL+'/roteiros.json',
-    consulta: API_URL+'/default_query/list.json'
+    consulta: API_URL+'/default_query/list.json',
+    generico: API_URL+'/generic/',
 };
 PRODUTOS_URL = 'http://localhost/dl_proxy.php?page=produtos';
 STATUS_NOT_SENT = 1;
@@ -178,6 +179,11 @@ $helpers =
 $localData =
 {
 
+    genericQuery: function($http, key, callback)
+    {
+        this.findAll($http, 'generic-'+key, false, callback, 'GENERICO-'+key);
+    },
+
     defaultQuery: function($http, key, callback)
     {
         this.findAll($http, 'consulta-'+key, false, callback, 'default_query='+key+'&page=all');
@@ -197,25 +203,45 @@ $localData =
          */
         if (forceUpdate || (!list.length))
         {
-            var apiUrl = (params && params.indexOf('default_query') != -1) ?
-               API_URLS['consulta'] : API_URLS[key];
-            if (apiUrl)
+            var apiUrl;
+            if (params)
             {
-                var email = localStorage['user_email'];
-                var token = localStorage['user_token'];
-                $http.get(apiUrl+"?user_email="+email+
-                    "&user_token="+token+(params ? ('&'+params) : ''))
-                    .then(function(response) {
-                        $localData.saveAll(response.data, storageName);
-                        var date = new Date().getTime();
-                        localStorage['sync_'+storageName] = date+"";
-                        response.syncDate = date;
-                        if (callback)
-                        {
-                            callback(response);
-                        }
-                    });
+               if (params.indexOf('GENERICO-') == 0)
+               {
+                  apiUrl = API_URLS['generico'] + 
+                            params.replace('GENERICO-', '') + 
+                            '.json';
+                  params = '';
+               }
+               else if (params.indexOf('default_query') != -1)
+               {
+                  apiUrl = API_URLS['consulta'];
+               }
+               else
+               {
+                  apiUrl = API_URLS[key];
+               }
             }
+            else
+            {
+              apiUrl = API_URLS[key];
+            }
+                        
+            var email = localStorage['user_email'];
+            var token = localStorage['user_token'];
+            $http.get(apiUrl+"?user_email="+email+
+                "&user_token="+token+(params ? ('&'+params) : ''))
+                .then(function(response) {
+                    $localData.saveAll(response.data, storageName);
+                    var date = new Date().getTime();
+                    localStorage['sync_'+storageName] = date+"";
+                    response.syncDate = date;
+                    if (callback)
+                    {
+                        callback(response);
+                    }
+                });
+            
             return [];
         }
 
