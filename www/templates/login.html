@@ -1,0 +1,26 @@
+<div class="modal login-container">
+  <div class="login-wrap">
+    <div class="logo-container">
+        <img src="img/logo-cliente.png" alt="Logo" />
+    </div>
+    <h1 class="title">Login</h1>
+    <label class="item item-input">
+      <span class="input-label">Email</span>
+      <input type="text" ng-model="email">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Senha</span>
+      <input type="password" ng-model="password">
+    </label>
+    <label class="item">
+      <button class="button button-block button-positive" type="submit"
+              ng-click="doLogin()">
+          {{ doing ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </label>
+    <p ng-if="errorMessage" class="bar bar-assertive">
+        {{ errorMessage }}
+    </p>
+  </div>
+</div>
+

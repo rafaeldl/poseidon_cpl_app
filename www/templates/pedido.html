@@ -1,0 +1,135 @@
+<ion-view title="Pedido">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-plus" ng-click="addItem()" ng-if="!showProdutos"></button>
+        <button class="button button-icon icon ion-checkmark" ng-click="itemOk()" ng-if="showProdutos"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <div id="pedido" ng-if="!showProdutos">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Tipo
+                </div>
+                <select id="c5_tipoped" ng-model="pedido.c5_tipoped">
+                    <option value="N">Normal</option>
+                    <option value="B">Bonificado</option>
+                </select>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Preço - Tabela
+                </div>
+                <select id="c5_prtabel" ng-model="pedido.c5_prtabel">
+                    <option></option>
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </select>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Limpeza Conservadora
+                </div>
+                <select id="c5_limpeza" ng-model="pedido.c5_limpeza">
+                    <option></option>
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </select>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Mensagem Nota</span>
+                <input type="text" id="c5_mennota" ng-model="pedido.c5_mennota">
+            </label>
+
+            <br class="clear"/>
+
+            <table ng-if="(produtos | filter:filterQtd | orderBy: 'descricao').length" width="100%" border="1">
+                <tr>
+                    <th class="width-80p"></th>                
+                    <th>Descrição</th>
+                    <th class="width-80p"></th>                
+                    <th class="width-80p">Qtd.</th>
+                    <th class="width-80p"></th>                
+                </tr>
+                <tr ng-repeat="item in produtos | filter:filterQtd | orderBy: 'descricao'">
+                    <td>
+                        <button class="button button-assertive" ng-click="deleteItem(item)">
+                            <i class="ion-trash-a big-icon"></i>
+                        </button>                        
+                    </td>
+                    <td>                        
+                        {{ item.descricao }}<br>
+                        <p>
+                            {{ helpers.toReal(item.preco) }} | 
+                            {{ helpers.toReal(item.preco * item.qtd) }}
+                        </p>
+                    </td>
+                    <td class="aright">
+                        <button class="button button-energized" ng-click="changeQtd(item, -1)">
+                           <i class="ion-ios7-minus-outline big-icon"></i>
+                        </button>
+                    </td>
+                    <td class="center v-center">                        
+                        <span class="width-80p">{{ item.qtd }}</span>
+                    </td>                    
+                    <td class="aleft">
+                        <button class="button button-energized" ng-click="changeQtd(item, 1)">
+                           <i class="ion-ios7-plus-outline big-icon"></i>
+                        </button>
+                    </td>
+                </tr>                
+            </table>
+
+            <br class="clear">
+
+            <h3 class="center">
+                {{ helpers.toReal(total) }}
+            </h3>
+
+            <br class="clear"/>
+
+            <button class="button button-balanced centered" ng-click="save()"
+                    id="btn-save-pedido">
+                {{ saving ? 'Salvando...' : 'Salvar' }}
+            </button>
+
+            <br class="clear">
+        </div>
+
+        <div id="produtos" ng-if="showProdutos">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Família
+                </div>
+                <select id="filtro-familia" ng-model="filterProp.familia" ng-init="filterProp.familia = -1">
+                    <option ng-repeat="familia in produtoFamilia" value="{{ familia.X5_CHAVE }}">
+                        {{ familia.X5_DESCRI }}
+                    </option>
+                </select>
+            </label>
+            <table class="width-100">
+                <tr>
+                    <th>Produto</th>
+                    <th>Qtd</th>
+                </tr>
+                <tr ng-repeat="produto in produtos | filter:filterProp | orderBy:'descricao'">
+                    <td class="desc">
+                        {{ produto.codigo }} - {{ produto.descricao }}
+                        <br>
+                        <p>
+                            <i class="ion-ios7-keypad"></i> {{ produto.estoque }} -
+                            {{ helpers.toReal(produto.preco) }}
+                        </p>
+                    </td>
+                    <td>
+                        <input type="number" placeholder="Qtd." ng-model="produto.qtd" class="center"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </ion-content>
+</ion-view>
