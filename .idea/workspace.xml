@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ec561e7-bbd6-4fec-80cf-e8e06631d2c0" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\xampp\htdocs\poseidon_cpl_app\Gruntfile" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/applicationController.js" afterPath="$PROJECT_DIR$/www/js/controllers/applicationController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/clienteDetalheController.js" afterPath="$PROJECT_DIR$/www/js/controllers/clienteDetalheController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/clientesController.js" afterPath="$PROJECT_DIR$/www/js/controllers/clientesController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/helpers.js" afterPath="$PROJECT_DIR$/www/js/helpers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/index.js" afterPath="$PROJECT_DIR$/www/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/localData.js" afterPath="$PROJECT_DIR$/www/js/localData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/loginController.js" afterPath="$PROJECT_DIR$/www/js/controllers/loginController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/pedidoController.js" afterPath="$PROJECT_DIR$/www/js/controllers/pedidoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/pedidoListController.js" afterPath="$PROJECT_DIR$/www/js/controllers/pedidoListController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/roteiroOpcoesController.js" afterPath="$PROJECT_DIR$/www/js/controllers/roteiroOpcoesController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/roteirosController.js" afterPath="$PROJECT_DIR$/www/js/controllers/roteirosController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/semPedidoController.js" afterPath="$PROJECT_DIR$/www/js/controllers/semPedidoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/semPedidoListController.js" afterPath="$PROJECT_DIR$/www/js/controllers/semPedidoListController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="poseidon_cpl_app.iws" />
@@ -62,11 +46,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js-src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4110953" vertical-offset="0" max-vertical-offset="2941">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2941">
               <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.025073746" vertical-offset="0" max-vertical-offset="678">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,6 +111,7 @@
         <option value="$PROJECT_DIR$/www/js/localData.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/js-src/app.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -423,8 +418,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js-src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4110953" vertical-offset="0" max-vertical-offset="2941">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2941">
           <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.025073746" vertical-offset="0" max-vertical-offset="678">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
