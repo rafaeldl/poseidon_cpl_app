@@ -83,14 +83,15 @@ var roteirosController = function($scope, $http) {
          * Carrega Familias de produtos
          */
         $localData.defaultQuery($http, 'Z1', function(response){
-            $localData.saveAll(response.data, 'produto-familias');
-            $scope.sendingData = false;
+            $localData.saveAll(response.data, 'produto-familias');            
 
             /*
              * Carrega Clientes             
+             */
             $localData.genericQuery($http, 'sa1', function(response){
-                $localData.saveAll(response.data, 'clientes');                
-            });*/
+                $localData.saveAll(response.data, 'clientes');
+                $scope.sendingData = false;            
+            });
         });
     });
 
