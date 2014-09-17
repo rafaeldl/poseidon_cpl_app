@@ -1,9 +1,14 @@
 {
-  "name": "poseidon_cpl_app",
+  "name": "deon-boilerplate",
   "version": "0.1.0",
+  "description": "Boilerplate Simples",
   "devDependencies": {
     "grunt": "~0.4.5",
+    "grunt-contrib-compass": "~0.8.0",
+    "grunt-contrib-imagemin": "^0.8.1",
     "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-watch": "~0.4.0"
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-ftp-deploy": "~0.1.3",
+    "matchdep": "~0.3.0"
   }
 }
