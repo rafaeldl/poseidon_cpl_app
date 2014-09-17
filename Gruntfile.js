@@ -18,9 +18,9 @@ module.exports = function( grunt ) {
               },
               files: [{
                   expand: true,
-                  cwd: 'assets/img',
+                  cwd: 'www/img',
                   src: ['**/*.{png,jpg,gif}'],
-                  dest: 'assets/img'
+                  dest: 'www/img'
               }]
           }
     },
@@ -32,19 +32,19 @@ module.exports = function( grunt ) {
         tasks: [ 'compass' ]
       },
       js: {
-        files: 'assets/js-src/**/*',
+        files: 'js-src/**/*',
         tasks: [ 'uglify' ]
       },
       jpg: {
-          files: 'assets/img/**/*',
+          files: 'www/img/**/*',
           tasks: [ 'imagemin' ]
       },
       png: {
-          files: 'assets/img/**/*',
+          files: 'www/img/**/*',
           tasks: [ 'imagemin' ]
       },
       gif: {
-            files: 'assets/img/**/*',
+            files: 'www/img/**/*',
             tasks: [ 'imagemin' ]
       }
     },
@@ -68,9 +68,9 @@ module.exports = function( grunt ) {
       dist: {
         files: [{
             expand: true,
-            cwd: 'assets/js-src',
+            cwd: 'js-src',
             src: '**/*.js',
-            dest: 'assets/js'
+            dest: 'www/js'
         }]
       }
     },
@@ -83,8 +83,8 @@ module.exports = function( grunt ) {
           port: 21,
           authKey: 'key1'
         },
-        src: '/Applications/XAMPP/xamppfiles/htdocs/aroma/',
-        dest: '/public_html/aroma/',
+        src: '/',
+        dest: '/',
         exclusions: [
           '/Applications/XAMPP/xamppfiles/htdocs/aroma/.DS_Store',
           '/Applications/XAMPP/xamppfiles/htdocs/aroma/Thumbs.db',

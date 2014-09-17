@@ -1,5 +1,1 @@
-var clientesController = function($scope, $http) {
-
-    $scope.clientes = $localData.findAll($http, 'clientes', false);
-
-};
+var clientesController=function($scope,$http){$scope.clientes=$localData.findAll($http,"clientes",!1)};
