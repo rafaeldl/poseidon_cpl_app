@@ -13,18 +13,24 @@
     <ion-content class="has-header">
       <ion-list>
         <ion-item nav-clear menu-close href="#/app/roteiros">
+          <i class="icon ion-map menu-icon"></i>
           Roteiros
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/pedido-list">
+          <i class="icon ion-thumbsup menu-icon"></i>
           Pedidos
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/sem-pedido-list">
+          <i class="icon ion-briefcase menu-icon"></i>
           Sem Pedido
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/clientes">
+          <i class="icon ion-ios7-people menu-icon"></i>
           Clientes
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/login">
+        <ion-item nav-clear menu-close
+                  onclick="if (confirm('Deseja mesmo sair? Seus dados serão perdidos.')) window.location='#/app/login'">
+          <i class="icon ion-log-out menu-icon"></i>
           Sair
         </ion-item>
       </ion-list>

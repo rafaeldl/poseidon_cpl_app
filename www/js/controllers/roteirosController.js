@@ -50,7 +50,7 @@ var roteirosController = function($scope, $http) {
         {
             forceUpdate = true;
         }
-        $scope.sendingData = false;
+        $scope.sendingData = true;
         $scope.loading = true;
         $localData.findAll($http, 'roteiros', forceUpdate, function(response){
             $scope.listItens = response.data;
@@ -67,35 +67,41 @@ var roteirosController = function($scope, $http) {
                     $localData.findAll($http, 'produtos', false, null, 
                         'tabela='+item.tabela, 'produtos-'+item.tabela);
                 }
-            }        
+            }
+
+            /*
+             * Carrega Evetos
+             */
+            $localData.defaultQuery($http, 'AC5', function(response){
+                $localData.saveAll(response.data, 'eventos');
+
+                /*
+                 * Carrega Familias de produtos
+                 */
+                $localData.defaultQuery($http, 'Z1', function(response){
+                    $localData.saveAll(response.data, 'produto-familias');
+
+                    /*
+                     * Carrega Clientes
+                     */
+                    if ($scope.listItens.length)
+                    {
+                        var percurso = $scope.listItens[0]['percurso'];
+                        $localData.defaultQuery($http, 'SA1', function(response) {
+                            $localData.saveAll(response.data, 'clientes');
+                            $scope.sendingData = false;
+                        }, 'filter=a1_zrota:'+percurso);
+                    }
+                    else
+                    {
+                        $scope.sendingData = false;
+                    }
+                });
+            });
         });     
     };
     loadRoteiros();
     
-    /*
-     * Carrega Evetos
-     */
-    $scope.sendingData = true;
-    $localData.defaultQuery($http, 'AC5', function(response){
-        $localData.saveAll(response.data, 'eventos');
-
-        /*
-         * Carrega Familias de produtos
-         */
-        $localData.defaultQuery($http, 'Z1', function(response){
-            $localData.saveAll(response.data, 'produto-familias');
-            $scope.sendingData = false;
-
-            /*
-             * Carrega Clientes             
-            $localData.genericQuery($http, 'sa1', function(response){
-                $localData.saveAll(response.data, 'clientes');                
-            });*/
-        });
-    });
-
-    
-
     /*
      * Send button
      */

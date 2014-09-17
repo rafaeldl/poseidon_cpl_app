@@ -22,6 +22,8 @@ angular.module('starter.controllers', [])
 .controller('RoteirosCtrl', roteirosController)
 .controller('RoteiroOpcoesCtrl', roteiroOpcoesController)
 .controller('SemPedidoCtrl', semPedidoController)
+.controller('ClientesCtrl', clientesController)
+.controller('ClienteDetalheCtrl', clienteDetalheController)
 .controller('SemPedidoListCtrl', semPedidoListController);
 
 

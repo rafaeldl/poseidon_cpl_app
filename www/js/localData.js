@@ -1,17 +1,19 @@
 $localData =
 {
 
-    genericQuery: function($http, key, callback)
+    genericQuery: function($http, key, forceUpdate, callback, onerror, extraParams)
     {
-        this.findAll($http, 'generic-'+key, false, callback, 'GENERICO-'+key);
+        extraParams = extraParams || '';
+        this.findAll($http, 'generic-'+key, forceUpdate, callback, extraParams, onerror);
     },
 
-    defaultQuery: function($http, key, callback)
+    defaultQuery: function($http, key, callback, extraParams)
     {
-        this.findAll($http, 'consulta-'+key, false, callback, 'default_query='+key+'&page=all');
+        extraParams = extraParams ? ('&'+extraParams) : '';
+        this.findAll($http, 'consulta-'+key, false, callback, 'default_query='+key+'&page=all'+extraParams);
     },
 
-    findAll: function($http, key, forceUpdate, callback, params, storageName)
+    findAll: function($http, key, forceUpdate, callback, params, storageName, onerror)
     {
         if (!storageName)
         {
@@ -28,12 +30,10 @@ $localData =
             var apiUrl;
             if (params)
             {
-               if (params.indexOf('GENERICO-') == 0)
+               if (key.indexOf('generic-') == 0)
                {
-                  apiUrl = API_URLS['generico'] + 
-                            params.replace('GENERICO-', '') + 
-                            '.json';
-                  params = '';
+                  apiUrl = API_URLS['generico'] +
+                      (key.replace('generic-', '')) + '.json';
                }
                else if (params.indexOf('default_query') != -1)
                {
@@ -51,7 +51,7 @@ $localData =
                         
             var email = localStorage['user_email'];
             var token = localStorage['user_token'];
-            $http.get(apiUrl+"?user_email="+email+
+            var request = $http.get(apiUrl+"?user_email="+email+
                 "&user_token="+token+(params ? ('&'+params) : ''))
                 .then(function(response) {
                     $localData.saveAll(response.data, storageName);
@@ -63,7 +63,10 @@ $localData =
                         callback(response);
                     }
                 });
-            
+            if (onerror)
+            {
+                request.error = onerror;
+            }
             return [];
         }
 

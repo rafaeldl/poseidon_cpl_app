@@ -141,6 +141,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           }
      })
 
+     .state('app.clientes', {
+          url: "/clientes",
+          views: {
+              'menuContent' :{
+                  templateUrl: "templates/clientes.html",
+                  controller: 'ClientesCtrl'
+              }
+          }
+     })
+
+     .state('app.cliente_detalhe', {
+          url: "/cliente-detalhe/:clienteId/:lojaId",
+          views: {
+              'menuContent' :{
+                  templateUrl: "templates/cliente-detalhe.html",
+                  controller: 'ClienteDetalheCtrl'
+              }
+          }
+     })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/roteiros');
 });

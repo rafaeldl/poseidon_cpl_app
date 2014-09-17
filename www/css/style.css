@@ -127,6 +127,13 @@ a:hover{
     z-index: 9999;
 }
 
+.menu-icon{
+    font-size: 21px;
+    margin-right: 8px;
+    width: 16px;
+    display: inline-block;
+}
+
 /*
  * table
  */
