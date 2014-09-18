@@ -134,6 +134,34 @@ a:hover{
     display: inline-block;
 }
 
+ion-nav-bar,
+ion-side-menu header
+{
+    background: #002941 !important;    
+}
+
+
+ion-nav-bar h1,
+ion-nav-bar i,
+ion-nav-bar button,
+ion-side-menu h1{
+    color: #FFF !important;
+    text-shadow: none;
+}
+
+ion-side-menu{
+    background: #002941 !important;
+}
+
+ion-side-menu a,
+ion-side-menu ion-item,
+.clickable-icon{
+    background: #003E61 !important;
+    color: #FFF !important;
+}
+
+
+
 /*
  * table
  */
