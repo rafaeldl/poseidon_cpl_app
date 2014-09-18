@@ -40,6 +40,7 @@ loginController = function($scope, $http, $ionicSideMenuDelegate, $ionicPlatform
             {
                 $scope.errorMessage = 'Erro ao acessar o servidor.';
             }
+            alert($scope.errorMessage);
         });
     };
 };
