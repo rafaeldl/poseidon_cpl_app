@@ -236,7 +236,8 @@ h1{
     padding-left: 13px;
 }
 
-.login-container button{
+.login-container button,
+button.save-button{
     background: #003E61;
     width: 88%;
     color: #FFF;
@@ -249,6 +250,7 @@ h1{
     font-size: 18px;    
 }
 
+button.save-button,
 .login-container button,
 .login-container input,
 .login-container img{
