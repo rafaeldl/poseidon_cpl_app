@@ -228,11 +228,11 @@ h1{
 }
 
 .login-container input{
-    margin: 8px auto;
+    margin: 21px auto;
     width: 88%;
     border-radius: 2px;
-    height: 21px;
-    font-size: 11px;
+    height: 34px;
+    font-size: 13px;
     padding-left: 13px;
 }
 
@@ -245,7 +245,7 @@ h1{
     display: block;
     margin: 0 auto;
     border-radius: 2px;
-    height: 21px;
+    height: 34px;
 }
 
 .login-container button,

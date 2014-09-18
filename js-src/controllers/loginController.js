@@ -1,10 +1,10 @@
 loginController = function($scope, $http, $ionicSideMenuDelegate, $ionicPlatform) {
 
     $scope.half = window.innerHeight * 0.3;
-    $ionicPlatform.ready(function() {
-
-        console.log('platform Ready!');
-    });
+    window.onresize = function(){
+        var container = document.getElementById('logo-container');
+        container.style.top = (window.innerHeight * 0.3)+'px';
+    }
     $ionicSideMenuDelegate.canDragContent(false);
     $scope.errorMessage = '';
     $scope.email = localStorage['user_email'] || '';
