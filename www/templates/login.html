@@ -1,29 +1,22 @@
 <div class="modal login-container">  
   <div class="login-wrap">
-    <h1 class="center">      
-      Poseidon App
-    </h1>    
-    <h2 class="title">Login</h2>
-    <label class="item item-input">
-      <span class="input-label">Email</span>
-      <input type="email" ng-model="email">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Senha</span>
-      <input type="password" ng-model="password">
-    </label>
-    <label class="item">
-      <button class="button button-block button-positive" type="submit"
-              ng-click="doLogin()">
-          {{ doing ? 'Entrando...' : 'Entrar' }}
-      </button>
-    </label>
-    <p ng-if="errorMessage" class="bar bar-assertive">
-        {{ errorMessage }}
-    </p>
-    <br class="clear">
-    <img src="img/logo-cliente.png" alt="Logo" class="logo top-spaced width-50 centered"/>    
-    <br class="clear">
+    <div style="position: fixed; top: {{ half }}px; width: 100%;">
+        <img src="img/logo.png" alt="Logo Poseidon" class="logo" id="logo"/>
+    </div>
+    <div class="in-bottom">
+        <input type="email" ng-model="email" placeholder="Email">
+        <input type="password" ng-model="password" placeholder="Senha">
+        <button type="button" ng-click="doLogin()">
+              {{ doing ? 'Entrando...' : 'Entrar' }}
+        </button>
+    </div>
+    <script>
+        var error = '{{ errorMessage }}';
+        if (error)
+        {
+            alert(error);
+        }
+    </script>
   </div>
 </div>
 

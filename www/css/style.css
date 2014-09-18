@@ -158,7 +158,10 @@ ion-side-menu ion-item,
 .clickable-icon{
     background: #003E61 !important;
     color: #FFF !important;
+    border-color: #002941 !important;
 }
+
+
 
 
 
@@ -197,7 +200,9 @@ table th{
  */
  
 img.logo{
-    max-width: 100px;
+    margin: 0 auto 38% auto;
+    width: 55%;    
+    display: block;
 }
 
 .login-container{
@@ -206,20 +211,10 @@ img.logo{
     height: 100%;    
     top: 0;
     left: 0;
-    background: #fbf9f7 url(../img/login-background.jpg) top left no-repeat;
+    background: #002941 url(../img/login-background.png) top left no-repeat;
     z-index: 99999999;
 }
 
-.logo-container img{
-    display: block;
-    margin: 13px auto;
-}
-
-.login-wrap{
-    margin: 5% auto;
-    opacity: 0.98;
-    max-width: 400px;
-}
 
 .login-wrap .bar.bar-assertive{
     max-width: 400px;
@@ -232,13 +227,31 @@ h1{
     color: #222255;
 }
 
-.login-container h2.title{
-    background: #4a87ee;
+.login-container input{
+    margin: 8px auto;
+    width: 88%;
+    border-radius: 2px;
+    height: 21px;
+    font-size: 11px;
+    padding-left: 13px;
+}
+
+.login-container button{
+    background: #003E61;
+    width: 88%;
     color: #FFF;
-    margin: 0;
-    text-align: center;
-    padding: 8px 0;    
-    font-size: 18px;
+    border: none;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    border-radius: 2px;
+    height: 21px;
+}
+
+.login-container button,
+.login-container input,
+.login-container img{
+    max-width: 300px;
     font-family: Arial;
 }
 
@@ -248,3 +261,11 @@ h1{
     max-width: 400px;
     margin: 0 auto;
 }
+
+.in-bottom{
+    z-index: 999999;
+    position: fixed;
+    width: 100%;
+    bottom: 55px;
+}
+

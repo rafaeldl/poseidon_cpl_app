@@ -1,5 +1,10 @@
-loginController = function($scope, $http, $ionicSideMenuDelegate) {
+loginController = function($scope, $http, $ionicSideMenuDelegate, $ionicPlatform) {
 
+    $scope.half = window.innerHeight * 0.3;
+    $ionicPlatform.ready(function() {
+
+        console.log('platform Ready!');
+    });
     $ionicSideMenuDelegate.canDragContent(false);
     $scope.errorMessage = '';
     $scope.email = localStorage['user_email'] || '';
