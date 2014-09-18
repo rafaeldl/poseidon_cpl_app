@@ -55,6 +55,18 @@
                 <span class="item-note">Telefone 2</span>
             </div>
 
+            <div class="item item-icon-left" ng-if="condPag.E4_DESCRI">
+                <i class="icon ion-social-usd"></i>
+                {{ condPag.E4_DESCRI }}
+                <span class="item-note">Condição de pagamento</span>
+            </div>
+
+            <div class="item item-icon-left" ng-if="forReceb.ZJ2_DESC">
+                <i class="icon ion-share"></i>
+                {{ forReceb.ZJ2_DESC }}
+                <span class="item-note">Forma de recebimento</span>
+            </div>
+
             <div class="item item-icon-left">
                 <i class="icon ion-bookmark"></i>
                 {{ roteiro.potencial }} / {{ roteiro.cliente_info.segmento }}

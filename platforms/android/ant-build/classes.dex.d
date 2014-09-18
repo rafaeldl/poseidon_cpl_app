@@ -1,10 +1,22 @@
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes.dex : \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/org/apache/cordova/vibration/Vibration.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/R.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/R$xml.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/Pedidos.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/R$attr.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/BuildConfig.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/R$drawable.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes/com/somadl/android/pedidos/R$string.class \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/dexedLibs/classes-c3c09c5f5081b47ed577d33c2e5ccf7c.jar \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes.dex : \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionic\keyboard\IonicKeyboard$1.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionic\keyboard\IonicKeyboard$2.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionic\keyboard\IonicKeyboard.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\BuildConfig.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\pedidos.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\R$attr.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\R$drawable.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\R$string.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\R$xml.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\ionicframework\pedidos552754\R.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\BuildConfig.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\pedidos.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\R$attr.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\R$drawable.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\R$string.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\R$xml.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\com\somadl\android\pedidos\R.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\org\apache\cordova\device\Device.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\org\apache\cordova\networkinformation\NetworkManager$1.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes\org\apache\cordova\networkinformation\NetworkManager.class \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\dexedLibs\classes-b58ec4b9df69917eba6618c1ba1b1df1.jar \

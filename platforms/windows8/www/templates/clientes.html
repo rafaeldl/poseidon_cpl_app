@@ -1,0 +1,25 @@
+﻿<ion-view title="<i class='icon ion-ios7-people icon-md'></i> Clientes">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+
+        <div class="list">
+
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Pesquisa" ng-model="filterName">
+            </label>
+
+            <a class="item item-icon-left" href="#/app/cliente-detalhe/{{ cliente.A1_COD }}/{{ cliente.A1_LOJA }}"
+               ng-repeat="cliente in clientes | orderBy:['A1_NOME', 'A1_LOJA'] | filter:filterName "
+               ng-if="filterName.length > 2">
+                {{ cliente.A1_NOME }}
+                <span class="item-note">
+                    {{ cliente.A1_COD }} / {{ cliente.A1_LOJA }}
+                </span>
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

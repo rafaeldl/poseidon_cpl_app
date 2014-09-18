@@ -1,0 +1,31 @@
+﻿<ion-view title="Roteiro - Sem Pedido">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <br class="clear"/>
+
+        <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Evento
+                </div>
+                <select id="input-evento" ng-model="sem_pedido.ad5_evento" placeholder="Evento">
+                    <option ng-repeat="evento in eventos" value="{{ evento.AC5_EVENTO }}">
+                        {{ evento.AC5_DESCRI }}
+                    </option>
+                </select>
+            </label>
+
+            <label class="item item-input">
+                <textarea type="text" id="input-obs" placeholder="Observação" ng-model="sem_pedido.ad5_obs"></textarea>
+            </label>            
+        </div>
+
+        <br class="clear"/>
+
+        <button class="button button-balanced centered" ng-click="save()">
+            {{ saving ? 'Salvando...' : 'Salvar' }}
+        </button>
+    </ion-content>
+</ion-view>

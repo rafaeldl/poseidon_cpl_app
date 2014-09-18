@@ -7,6 +7,15 @@ clienteDetalheController = function($scope, $http, $stateParams) {
             if (data)
             {
                 $scope.cliente = data;
+                $scope.roteiro = $localData.findBy($http, 'roteiros', {
+                    cliente: data.A1_COD,
+                    lojacli: data.A1_LOJA
+                });
+                if ($scope.roteiro)
+                {
+                    $scope.condPag = $localData.find($http, 'condicao-pagamento', 'E4_CODIGO', $scope.roteiro.zfrec);
+                    $scope.forReceb = $localData.find($http, 'forma-recebimento', 'ZJ2_COD', $scope.roteiro.condpag);
+                }
             }
             else
             {

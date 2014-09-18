@@ -22,7 +22,7 @@ package com.somadl.android.pedidos;
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class Pedidos extends CordovaActivity 
+public class pedidos extends CordovaActivity 
 {
     @Override
     public void onCreate(Bundle savedInstanceState)

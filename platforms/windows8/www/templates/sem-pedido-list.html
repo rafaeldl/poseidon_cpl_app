@@ -1,0 +1,34 @@
+﻿<ion-view title="<i class='icon ion-briefcase icon-md'></i> Sem Pedido">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+
+        <br class="clear">
+           
+        <p class="padding-vertical center" ng-if="!semPedidos.length">
+            <i class="ion-happy big-icon"></i>
+            Nenhum pendente
+        </p>
+
+        <div class="list">                        
+            <div class="item item-icon-left item-icon-right" ng-repeat="semPedido in semPedidos">
+                <div class="action-icons">
+                    <a href="#app/sem-pedido/{{ semPedido.__roteiro }}/{{ semPedido.__id }}">
+                        <button class="button button-stable">
+                            <i class="ion-edit big-icon"></i>
+                        </button>
+                    </a>
+                    <button class="button button-assertive" ng-click="deleteItem(semPedido)">
+                        <i class="ion-trash-a big-icon"></i>
+                    </button>                    
+                </div>
+
+                <i class="icon ion-thumbsup big-icon icon-roteiro"></i>
+                {{ roteiros[semPedido.__roteiro] ? roteiros[semPedido.__roteiro].nome : '' }} <br>
+                {{ roteiros[semPedido.__roteiro] ? roteiros[semPedido.__roteiro].errors : '' }} <br>                
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

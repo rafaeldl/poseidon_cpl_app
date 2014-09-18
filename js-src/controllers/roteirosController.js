@@ -82,20 +82,34 @@ var roteirosController = function($scope, $http) {
                     $localData.saveAll(response.data, 'produto-familias');
 
                     /*
-                     * Carrega Clientes
+                     * Carrega condições de pagamento
                      */
-                    if ($scope.listItens.length)
-                    {
-                        var percurso = $scope.listItens[0]['percurso'];
-                        $localData.defaultQuery($http, 'SA1', function(response) {
-                            $localData.saveAll(response.data, 'clientes');
-                            $scope.sendingData = false;
-                        }, 'filter=a1_zrota:'+percurso);
-                    }
-                    else
-                    {
-                        $scope.sendingData = false;
-                    }
+                    $localData.defaultQuery($http, 'SE4', function(response) {
+                        $localData.saveAll(response.data, 'condicao-pagamento');
+
+                        /*
+                         * Carrega forma de recebimento
+                         */
+                        $localData.defaultQuery($http, 'ZJ2', function(response) {
+                            $localData.saveAll(response.data, 'forma-recebimento');
+
+                            /*
+                             * Carrega Clientes
+                             */
+                            if ($scope.listItens.length)
+                            {
+                                var percurso = $scope.listItens[0]['percurso'];
+                                $localData.defaultQuery($http, 'SA1', function(response) {
+                                    $localData.saveAll(response.data, 'clientes');
+                                    $scope.sendingData = false;
+                                }, 'filter=a1_zrota:'+percurso);
+                            }
+                            else
+                            {
+                                $scope.sendingData = false;
+                            }
+                        });
+                    });
                 });
             });
         });     

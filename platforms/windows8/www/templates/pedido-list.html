@@ -1,0 +1,35 @@
+﻿<ion-view title="<i class='icon ion-thumbsup icon-md'></i> Pedidos pendentes">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+
+        <br class="clear">
+           
+        <p class="padding-vertical center" ng-if="!pedidos.length">
+            <i class="ion-happy big-icon"></i>
+            Nenhum pedido pendente
+        </p>
+
+        <div class="list">                        
+            <div class="item item-icon-left item-icon-right" ng-repeat="pedido in pedidos">                                
+                <div class="action-icons">
+                    <a href="#app/pedido/{{ pedido.__roteiro }}/{{ pedido.__id }}">
+                        <button class="button button-stable">
+                            <i class="ion-edit big-icon"></i>
+                        </button>
+                    </a>
+                    <button class="button button-assertive" ng-click="deleteItem(pedido)">
+                        <i class="ion-trash-a big-icon"></i>
+                    </button>                    
+                </div>
+
+                <i class="icon ion-thumbsup big-icon icon-roteiro"></i>
+                {{ roteiros[pedido.__roteiro] ? roteiros[pedido.__roteiro].nome : '' }} <br>
+                {{ roteiros[pedido.__roteiro] ? roteiros[pedido.__roteiro].errors : '' }} <br>
+                <strong>Total:</strong> {{ helpers.toReal(pedido.__total) }}
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

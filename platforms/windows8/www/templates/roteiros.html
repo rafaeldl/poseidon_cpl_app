@@ -1,0 +1,43 @@
+﻿<ion-view title="<i class='ion-map icon-md'></i> Roteiros">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon {{ sendingData ? 'ion-looping' : 'ion-loop' }}"
+                ng-click="sendData()"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header" id="sem_pedido">
+        <p ng-if="loading" class="padding-vertical center">
+            <i class="ion-looping big-icon"></i>
+            Carregando itens...
+        </p>
+        <p ng-if="(!loading) && (!listItens.length)" class="padding-vertical center">
+            <i class="ion-sad big-icon"></i>
+            Sem roteiros para hoje
+        </p>
+        <table class="width-100">
+            <tr ng-repeat="item in listItens">
+                <td>
+                    <i class="ion-thumbsup big-icon icon-roteiro {{ item['status_pedidos'] == 3 ? 'error' : (item['status_pedidos'] == 2 ? 'success' : '') }}"
+                       ng-if="item['status_pedidos']"></i>
+
+                    <i class="ion-briefcase big-icon icon-roteiro {{ item['status_sem_pedidos'] == 3 ? 'error' : (item['status_sem_pedidos'] == 2 ? 'success' : '') }}"
+                       ng-if="item['status_sem_pedidos']"></i>
+                </td>
+                <td>
+                    <a href="#{{ item.done ? ('/app/roteiro-opcoes/'+item.sequencia) : '' }}">
+                        <div class="{{ item.done ? '' : 'disabled' }} padding-vertical">
+                            <strong>
+                                {{ item.sequencia }} {{ item.nome }}
+                            </strong>
+                            <br/>
+                            <strong>Ult. Comp.:</strong> {{ item.ult_compra }} |
+                            <strong>Potencial</strong> {{ item.potencial }}<br/>
+                            <span class="error">{{ item.errors }}</span>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </ion-content>
+</ion-view>

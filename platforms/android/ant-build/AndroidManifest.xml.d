@@ -1,2 +1,2 @@
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/AndroidManifest.xml : \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/AndroidManifest.xml \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\AndroidManifest.xml : \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\AndroidManifest.xml \

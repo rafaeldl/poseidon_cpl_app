@@ -1,4 +1,4 @@
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/Pedidos-debug-unaligned.apk : \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/Pedidos.ap_ \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/ant-build/classes.dex \
-/home/somadl/dev/projects/poseidon_cpl_app/platforms/android/CordovaLib/ant-build/classes.jar \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\pedidos-debug-unaligned.apk : \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\pedidos.ap_ \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\ant-build\classes.dex \
+D:\xampp\htdocs\poseidon_cpl_app\platforms\android\CordovaLib\ant-build\classes.jar \
