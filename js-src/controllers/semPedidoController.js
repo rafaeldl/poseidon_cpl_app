@@ -10,9 +10,10 @@ semPedidoController = function($scope, $http, $stateParams) {
             return 0;
         }
         $scope.saving = true;
-        var obs = document.getElementById('input-obs');
-        var evento = document.getElementById('input-evento');
-        var roteiro = $localData.find($http, 'roteiros', 'sequencia', $scope.roteiro);
+        var obs = document.getElementById('input-obs'),
+            evento = document.getElementById('input-evento'),
+            roteiro = $localData.find($http, 'roteiros', 'sequencia', $scope.roteiro),
+            now = new Date();
 
         /*
          * Valida
@@ -34,6 +35,8 @@ semPedidoController = function($scope, $http, $stateParams) {
         $scope.sem_pedido.ad5_vend = roteiro.vendedor;
         $scope.sem_pedido.ad5_codcli = roteiro.cliente;
         $scope.sem_pedido.ad5_loja = roteiro.lojacli;
+        $scope.sem_pedido.ad5_data = $helpers.dateToProtheusDate(now);
+        $scope.sem_pedido.ad5_hora = $helpers.dateToProtheusTime(now);
         list.push($scope.sem_pedido);
 
         /*
@@ -56,18 +59,18 @@ semPedidoController = function($scope, $http, $stateParams) {
         syncronize = true;
 
         if (navigator && navigator.geolocation)
-        {
-            $scope.saving = 0;
-
+        {            
             navigator.geolocation.getCurrentPosition(
-                function(position) {
+                function(position) {                    
                     $scope.sem_pedido.ad5_zlatit = position.coords.latitude.toFixedDown(9);
                     $scope.sem_pedido.ad5_longit = position.coords.longitude.toFixedDown(9);
                     salvaSemPedido($scope.sem_pedido);
-                    window.location = '#/app/roteiros';
+                    $scope.saving = false;
+                    window.location = '#/app/roteiros';                    
                 },
                 function(error){
                     salvaSemPedido($scope.sem_pedido);
+                    $scope.saving = false;
                     window.location = '#/app/roteiros';
                 },
                 {

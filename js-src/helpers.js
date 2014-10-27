@@ -36,7 +36,25 @@ $helpers =
         hour = (""+hour).length == 1 ? ("0"+hour) : hour;
         minutes = (""+minutes).length == 1 ? ("0"+minutes) : minutes;
         return hour+":"+minutes;
+    },
+
+    dateToProtheusDate: function(date){
+        var result = '';
+        result += date.getFullYear();
+        result += (date.getMonth()+1);
+        result += date.getDate();
+        return result;        
+    },
+
+    dateToProtheusTime: function(date){
+        var result = '';
+        result += date.getHours();
+        result += ':';
+        result += date.getMinutes();
+        return result;        
     }
+
+
 };
 
 function enviaSemPedido($http, roteiro, evento, obs, success, error)

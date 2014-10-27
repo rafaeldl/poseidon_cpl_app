@@ -53,6 +53,7 @@ pedidoController = function($scope, $http, $stateParams) {
     };
     $scope.save = function()
     {
+        var now = new Date();
         if ($scope.saving)
         {
             return 0;
@@ -72,6 +73,8 @@ pedidoController = function($scope, $http, $stateParams) {
         $scope.pedido.c5_condpag = roteiro.condpag;
         $scope.pedido.c5_tabela = roteiro.tabela;
         $scope.pedido.c5_zfrec = roteiro.zfrec;
+        $scope.pedido.c5_emissao = $helpers.dateToProtheusDate(now);
+        $scope.pedido.c5_zhora = $helpers.dateToProtheusTime(now);
         $scope.pedido.__roteiro = roteiro.sequencia;
         $scope.pedido.__total = $scope.total;
         for (var i in $scope.produtos)
@@ -136,17 +139,19 @@ pedidoController = function($scope, $http, $stateParams) {
         window.syncronize = true;
         if (navigator && navigator.geolocation)
         {
-            $scope.saving = 0;
+            
 
             navigator.geolocation.getCurrentPosition(
                 function(position) {
                     $scope.pedido.c5_zlatitu = position.coords.latitude.toFixedDown(9);
                     $scope.pedido.c5_zlongit = position.coords.longitude.toFixedDown(9);
                     salvaPedido($scope.pedido);
+                    $scope.saving = 0;
                     window.location = '#/app/roteiros';
                 },
                 function(error){
                     salvaPedido($scope.pedido);
+					$scope.saving = 0;                    
                     window.location = '#/app/roteiros';
                 },
                 {

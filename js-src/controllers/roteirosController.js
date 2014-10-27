@@ -26,13 +26,18 @@ var roteirosController = function($scope, $http) {
         {
             localStorage['roteiros'] = '[]';
             localStorage['pedidos'] = '[]';
+            localStorage['sem_pedidos'] = '[]';
         }
+    }
+    else
+    {
+        localStorage['load_date'] = "" + new Date().getTime();
     }
 
     var loadRoteiros = function()
     {
         /*
-         * Verifica a data do roteiro
+         * Verifica a data do roteiro TODO REMOVE IT
          */
         var lastUpdate = localStorage['sync_roteiros'],
             forceUpdate =  false;

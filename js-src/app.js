@@ -10,7 +10,8 @@
  */
 //API_URL = 'http://portal.cplkibon.com.br/';
 //ROTEIROS_URL = 'http://localhost/dl_proxy.php?page=roteiros';
-API_URL = 'http://portal.cplkibon.com.br';
+//API_URL = 'http://portal.cplkibon.com.br';
+API_URL = 'http://192.168.25.2:3000';
 API_URLS = {
     produtos: API_URL+'/pedidos/produtos.json',
     roteiros: API_URL+'/roteiros.json',
