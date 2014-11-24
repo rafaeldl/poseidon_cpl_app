@@ -53,7 +53,7 @@ $localData =
             var token = localStorage['user_token'];
             var request = $http.get(apiUrl+"?user_email="+email+
                 "&user_token="+token+(params ? ('&'+params) : ''))
-                .then(function(response) {
+                .then(function(response) {                    
                     $localData.saveAll(response.data, storageName);
                     var date = new Date().getTime();
                     localStorage['sync_'+storageName] = date+"";
@@ -63,10 +63,8 @@ $localData =
                         callback(response);
                     }
                 });
-            if (onerror)
-            {
-                request.error = onerror;
-            }
+            request.error = onerror || this.onerror;
+            
             return [];
         }
 
@@ -84,6 +82,10 @@ $localData =
         {
             return list;
         }
+    },
+
+    onerror: function(data){
+        console.log(data);        
     },
 
     findBy: function($http, key, criteria)

@@ -8,8 +8,7 @@ loginController = function($scope, $http, $ionicSideMenuDelegate, $ionicPlatform
     $ionicSideMenuDelegate.canDragContent(false);
     $scope.errorMessage = '';
     $scope.email = localStorage['user_email'] || '';
-    $scope.password = '';
-    localStorage.clear();
+    $scope.password = '';    
     localStorage['user_email'] = $scope.email;
 
     $scope.doLogin = function()

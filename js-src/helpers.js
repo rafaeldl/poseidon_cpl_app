@@ -52,9 +52,24 @@ $helpers =
         result += ':';
         result += date.getMinutes();
         return result;        
+    },
+
+    /*
+     * Ping on server, callback injects true if it responds
+     */
+    ping: function(ip, callback) {
+        var img = new Image();        
+        img.onload = function(){
+            callback(true, this.src);
+        };
+        img.onerror = function(){
+            callback(true, this.src);
+        };
+        setTimeout(function(){
+            callback(false);
+        }, 18000);
+        img.src = ip;
     }
-
-
 };
 
 function enviaSemPedido($http, roteiro, evento, obs, success, error)

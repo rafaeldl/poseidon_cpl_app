@@ -11,7 +11,7 @@
 //API_URL = 'http://portal.cplkibon.com.br/';
 //ROTEIROS_URL = 'http://localhost/dl_proxy.php?page=roteiros';
 //API_URL = 'http://portal.cplkibon.com.br';
-API_URL = 'http://192.168.25.2:3000';
+API_URL = 'http://192.168.25.2:2424';
 API_URLS = {
     produtos: API_URL+'/pedidos/produtos.json',
     roteiros: API_URL+'/roteiros.json',
@@ -22,6 +22,7 @@ PRODUTOS_URL = 'http://localhost/dl_proxy.php?page=produtos';
 STATUS_NOT_SENT = 1;
 STATUS_SENT = 2;
 STATUS_SENT_ERROR = 3;
+APP_VERSION = '1.0';
 
 angular.module('starter', ['ionic', 'starter.controllers'])
 .run(function($ionicPlatform) {
@@ -40,9 +41,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-    $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.headers.common = {Accept: "application/json, text/plain, */*"};
-    $httpProvider.defaults.headers.post = {"Content-Type": "application/json;charset=utf-8"};
+  $httpProvider.defaults.useXDomain = true;
+  $httpProvider.defaults.headers.common = {Accept: "application/json, text/plain, */*"};
+  $httpProvider.defaults.headers.post = {"Content-Type": "application/json;charset=utf-8"};
+  $httpProvider.defaults.timeout = 20000;
 
   $stateProvider
     .state('app', {
@@ -163,6 +165,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
      })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/roteiros');
+  $urlRouterProvider.otherwise('/app/roteiros');  
 });
 

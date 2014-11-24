@@ -28,11 +28,14 @@
           <i class="icon ion-ios7-people menu-icon"></i>
           Clientes
         </ion-item>
-        <ion-item nav-clear menu-close
-                  onclick="if (confirm('Deseja mesmo sair? Seus dados serão perdidos.')) window.location='#/app/login'">
+        <ion-item nav-clear menu-close ng-click="doLogoff()">
           <i class="icon ion-log-out menu-icon"></i>
           Sair
         </ion-item>
+        <ion-item>
+          Versão do aplicativo: 
+          {{ appVersion }}
+        </ion-item>        
       </ion-list>
     </ion-content>
   </ion-side-menu>

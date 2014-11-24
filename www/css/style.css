@@ -272,3 +272,12 @@ button.save-button,
     bottom: 55px;
 }
 
+.version-info{
+  position: fixed;
+  z-index: 99999;
+  color: #000099;
+  bottom: 13px;
+  right: 3px;
+  font-size: 12px;    
+  opacity: 0.4;
+}

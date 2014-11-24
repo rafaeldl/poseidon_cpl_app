@@ -34,8 +34,9 @@ var roteirosController = function($scope, $http) {
         localStorage['load_date'] = "" + new Date().getTime();
     }
 
-    var loadRoteiros = function()
+    var loadRoteiros = function(loadRoteirosCallback)
     {
+        console.log('Load roteiros');
         /*
          * Verifica a data do roteiro TODO REMOVE IT
          */
@@ -113,14 +114,17 @@ var roteirosController = function($scope, $http) {
                             {
                                 $scope.sendingData = false;
                             }
+
+                            if (loadRoteirosCallback){
+                                loadRoteirosCallback();
+                            }
                         });
                     });
                 });
             });
         });     
     };
-    loadRoteiros();
-    
+        
     /*
      * Send button
      */
@@ -133,8 +137,13 @@ var roteirosController = function($scope, $http) {
     //header.appendChild(sendButton);    
     $scope.sendData = function()
     {
-        $scope.sendModels('pedidos', 'pedido', function(){
-            $scope.sendModels('sem_pedidos', 'sem_pedido');
+        if (SEND_TIMEOUT){
+            clearTimeout(SEND_TIMEOUT);
+        }
+        $scope.sendModels('pedidos', 'pedido', function(){            
+            $scope.sendModels('sem_pedidos', 'sem_pedido', function(){
+                loadRoteiros();
+            });
         });
     };
     $scope.sendModels = function(type, apiModel, success)
@@ -145,6 +154,9 @@ var roteirosController = function($scope, $http) {
         }
         $scope.sendingData = true;
 
+        /*
+         * Clear errors
+         */
         var models = $localData.findAll($http, type, false);
         for (var i in models)
         {
@@ -155,6 +167,10 @@ var roteirosController = function($scope, $http) {
             }
         }
         $localData.saveAll(models, type);
+
+        /*
+         * Send models
+         */
         var send = function(callback)
         {
             models = $localData.findAll($http, type, false);
@@ -215,14 +231,14 @@ var roteirosController = function($scope, $http) {
                         $localData.update($http, 'roteiros', 'sequencia', roteiro);
                         model.errors = 'Sem rede';
                         $localData.update($http, type, '__id', model);
+                        $scope.sendingData = false;
                         send(callback);
                     }
                 });
         };
 
         send(function(){
-            $scope.sendingData = false;
-            loadRoteiros();
+            $scope.sendingData = false;            
             if (success)
             {
                 success();    
@@ -235,13 +251,19 @@ var roteirosController = function($scope, $http) {
      */
     if (window.syncronize)
     {
-        $scope.sendData();
+        loadRoteiros(function(){
+            $scope.sendData();    
+        });        
+    }
+    else
+    {
+        loadRoteiros();
     }
 
     /*
      * Sincroniza em 5 mins
      */
-    var SEND_TIMEOUT = setTimeout(function(){
+    SEND_TIMEOUT = setTimeout(function(){
         $scope.sendData();
     }, 60000);
 

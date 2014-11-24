@@ -63,7 +63,9 @@ module.exports = function( grunt ) {
     // Concat and minify javascripts
     uglify: {
       options: {
-        mangle: false
+        mangle: false,
+        compress: false,
+        beautify: true
       },
       dist: {
         files: [{

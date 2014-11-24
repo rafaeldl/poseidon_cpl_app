@@ -7,6 +7,16 @@ applicationController = function($scope, $ionicModal, $timeout, $location) {
 
   // Form data for the login modal
   $scope.loginData = {};
+  $scope.appVersion = APP_VERSION;
+
+  // App logoff
+  $scope.doLogoff = function(){
+     if (!confirm('Deseja mesmo sair? Seus dados serão perdidos.')){
+       return 0;
+     }
+     localStorage.clear();
+     window.location = '#/app/login';
+  };  
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -38,14 +48,12 @@ applicationController = function($scope, $ionicModal, $timeout, $location) {
 
   /*
    * Access control
-   */
-  if
-      (
-        ($location.path() != '/app/login') &&
-        ((!localStorage) ||
-        (!localStorage['user_email']) ||
-        (!localStorage['user_token']))
-      )
+   */  
+  if (
+    ($location.path() != '/app/login') &&
+    ((!localStorage['user_email']) ||
+     (!localStorage['user_token']))
+  )
   {
       window.location = '#/app/login';
   }
