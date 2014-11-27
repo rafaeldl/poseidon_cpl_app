@@ -1,0 +1,19 @@
+
+
+############################## CHANGE LOG ##############################
+
+  Versão 1.1
+
+  - Atualização de aplica (MARCAR VERSÃO DO APLICATIVO PARA CONTROLE e 
+    origem: aplicativo, portal, protheus (nos pedidos e não venda);
+
+  - Erro em inclusão de não venda duplicada e pedido de venda;
+
+  - Off-line apontar para : 187.58.224.81 / gvt 201.34.141.156 / 
+    oi 192.168.1.7 / interno
+
+  Versão 1.2
+
+  - Roteiros com flag liberado podem ser visitados sem seguir uma sequencia;
+
+  - Aviso de versão desatualizada

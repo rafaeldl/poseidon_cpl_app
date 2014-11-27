@@ -8,10 +8,10 @@
 /*
  * Globals
  */
-//API_URL = 'http://portal.cplkibon.com.br/';
+//API_URL = 'http://192.168.25.2:2424/';
 //ROTEIROS_URL = 'http://localhost/dl_proxy.php?page=roteiros';
-//API_URL = 'http://portal.cplkibon.com.br';
-API_URL = 'http://192.168.25.2:2424';
+API_URL = 'http://portal.cplkibon.com.br';
+//API_URL = 'http://192.168.25.2:2424';
 API_URLS = {
     produtos: API_URL+'/pedidos/produtos.json',
     roteiros: API_URL+'/roteiros.json',
@@ -22,7 +22,7 @@ PRODUTOS_URL = 'http://localhost/dl_proxy.php?page=produtos';
 STATUS_NOT_SENT = 1;
 STATUS_SENT = 2;
 STATUS_SENT_ERROR = 3;
-APP_VERSION = '1.0';
+APP_VERSION = '1.2';
 
 angular.module('starter', ['ionic', 'starter.controllers'])
 .run(function($ionicPlatform) {

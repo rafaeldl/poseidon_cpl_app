@@ -16,11 +16,9 @@ $helpers =
 
     dateToPtBr: function(date, time)
     {
-        var day = date.getDate();
-        var month = date.getMonth()+1;
-        var year = date.getFullYear();
-        day = (""+day).length == 1 ? ("0"+day) : day;
-        month = (""+month).length == 1 ? ("0"+month) : month;
+        var day = this.strZero(date.getDate(), 2);
+        var month = this.strZero(date.getMonth()+1, 2);
+        var year = date.getFullYear();                
         var hours = "";
         if (time)
         {
@@ -31,26 +29,32 @@ $helpers =
 
     dateToPtBrTime: function(date)
     {
-        var hour = date.getHours();
-        var minutes = date.getMinutes();
-        hour = (""+hour).length == 1 ? ("0"+hour) : hour;
-        minutes = (""+minutes).length == 1 ? ("0"+minutes) : minutes;
+        var hour = this.strZero(date.getHours(), 2);
+        var minutes = this.strZero(date.getMinutes(), 2);
         return hour+":"+minutes;
     },
 
     dateToProtheusDate: function(date){
         var result = '';
         result += date.getFullYear();
-        result += (date.getMonth()+1);
-        result += date.getDate();
+        result += this.strZero((date.getMonth()+1), 2);
+        result += this.strZero(date.getDate(), 2);
         return result;        
+    },
+
+    strZero: function(number, size){
+        number = number + '';
+        while (number.length < size){
+            number = '0'+number;
+        }
+        return number;
     },
 
     dateToProtheusTime: function(date){
         var result = '';
-        result += date.getHours();
+        result += this.strZero(date.getHours(), 2);
         result += ':';
-        result += date.getMinutes();
+        result += this.strZero(date.getMinutes(), 2);
         return result;        
     },
 

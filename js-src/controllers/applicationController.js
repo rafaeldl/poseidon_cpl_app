@@ -1,5 +1,7 @@
 applicationController = function($scope, $ionicModal, $timeout, $location) {
 
+  verifyVersion();
+
   if (window.SEND_TIMEOUT)
   {
      clearTimeout(SEND_TIMEOUT);

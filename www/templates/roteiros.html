@@ -25,8 +25,8 @@
                        ng-if="item['status_sem_pedidos']"></i>
                 </td>
                 <td>
-                    <a href="#{{ item.done ? ('/app/roteiro-opcoes/'+item.sequencia) : '' }}">
-                        <div class="{{ item.done ? '' : 'disabled' }}">
+                    <a href="#{{ (item.done || item.liberado) ? ('/app/roteiro-opcoes/'+item.sequencia) : '' }}">
+                        <div class="{{ (item.done || item.liberado) ? '' : 'disabled' }}">
                             <strong>
                                 {{ item.nome }}
                             </strong>

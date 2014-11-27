@@ -8,7 +8,7 @@ var roteirosController = function($scope, $http) {
         {
             var item = list[i];
             item.done = true;
-            if (!(item['status_pedidos'] || item['status_sem_pedidos']))
+            if ((!(item['status_pedidos'] || item['status_sem_pedidos'])) && !item['liberado'])
             {
                 break;
             }
