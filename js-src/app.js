@@ -22,16 +22,17 @@ PRODUTOS_URL = 'http://localhost/dl_proxy.php?page=produtos';
 STATUS_NOT_SENT = 1;
 STATUS_SENT = 2;
 STATUS_SENT_ERROR = 3;
-APP_VERSION = '1.2';
+APP_VERSION = '1.3';
 
 angular.module('starter', ['ionic', 'starter.controllers'])
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+.run(function() {
+  ionic.Platform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
+    alert(JSON.stringify(cordova.file));
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();

@@ -1,11 +1,7 @@
 <ion-view title="<i class='ion-map icon-md'></i> Roteiros">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon {{ sendingData ? 'ion-looping' : 'ion-loop' }}"
-                ng-click="sendData()"></button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>    
     <ion-content class="has-header" id="sem_pedido">
         <p ng-if="loading" class="padding-vertical center">
             <i class="ion-looping big-icon"></i>

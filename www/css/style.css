@@ -75,6 +75,10 @@
     display: none;
 }
 
+.header-looping{
+    font-size: 34px;
+}
+
 .padding-vertical{
     padding-top: 13px;
     padding-bottom: 13px;

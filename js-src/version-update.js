@@ -1,6 +1,8 @@
 
 window.verifyVersion =  function(){
 
+
+		
 	if (localStorage['old-version'] && (APP_VERSION < parseFloat(localStorage['old-version']))){
 		alert('Existe uma versão mais recente do aplicativo. Favor atualizar');
 	}

@@ -64,8 +64,7 @@ module.exports = function( grunt ) {
     uglify: {
       options: {
         mangle: false,
-        compress: false,
-        beautify: true
+        beautify: false
       },
       dist: {
         files: [{

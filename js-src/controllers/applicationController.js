@@ -1,4 +1,4 @@
-applicationController = function($scope, $ionicModal, $timeout, $location) {
+applicationController = function($scope, $ionicModal, $timeout, $location, $http) {
 
   verifyVersion();
 
@@ -59,4 +59,126 @@ applicationController = function($scope, $ionicModal, $timeout, $location) {
   {
       window.location = '#/app/login';
   }
+
+  /*
+   * Send button
+   */    
+  $scope.sendData = function()
+  {
+      if (SEND_TIMEOUT){
+          clearTimeout(SEND_TIMEOUT);
+      }
+      $scope.sendModels('pedidos', 'pedido', function(){            
+          $scope.sendModels('sem_pedidos', 'sem_pedido', function(){
+              //TODO
+          });
+      });
+  };
+  $scope.sendModels = function(type, apiModel, success)
+  {
+      if ($scope.sendingData)
+      {
+          return 0;
+      }
+      $scope.sendingData = true;
+
+      /*
+       * Clear errors
+       */
+      var models = $localData.findAll($http, type, false);
+      for (var i in models)
+      {
+          var model = models[i];
+          if (model.errors)
+          {
+              delete model.errors;
+          }
+      }
+      $localData.saveAll(models, type);
+
+      /*
+       * Send models
+       */
+      var send = function(callback)
+      {
+          models = $localData.findAll($http, type, false);
+
+          /*
+           * break condition
+           */
+          var model = models[0];
+          var allWithError = true;
+          for (var i in models)
+          {
+              var errors = models[i].errors;
+              if (!errors)
+              {
+                  allWithError = false;
+                  model = models[i];
+                  break;
+              }
+          }
+          if (allWithError || (!models.length))
+          {
+              callback();
+              return 0;
+          }
+
+          /*
+           * Try to send
+           */
+          var data = $localData.serialize(apiModel, model);
+          $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+          $http.post(API_URL+'/'+ type +'.json', data +
+              "&user_email="+localStorage['user_email']+"&user_token="+localStorage['user_token'])
+              .success(function(){
+                  $localData.delete($http, type, '__id', model.__id);
+                  $scope.sendingData = false;
+                  var roteiro = $localData.find($http, 'roteiros', 'sequencia', model.__roteiro);
+                  roteiro['status_'+type] = STATUS_SENT;
+                  roteiro.errors = '';
+                  $localData.update($http, 'roteiros', 'sequencia', roteiro);
+                  send(callback);
+              })
+              .error(function(data, status, headers, config){
+                  if (data.base)
+                  {
+                      var roteiro = $localData.find($http, 'roteiros', 'sequencia', model.__roteiro);
+                      roteiro['status_'+type] = STATUS_SENT_ERROR;
+                      roteiro.errors = data.base.join(' ');
+                      $localData.update($http, 'roteiros', 'sequencia', roteiro);
+                      model.errors = data.base.join(' ');
+                      $localData.update($http, type, '__id', model);
+                      send(callback);
+                  }
+                  else
+                  {
+                      var roteiro = $localData.find($http, 'roteiros', 'sequencia', model.__roteiro);
+                      roteiro['status_'+type] = STATUS_SENT_ERROR;
+                      roteiro.errors = 'Sem rede';
+                      $localData.update($http, 'roteiros', 'sequencia', roteiro);
+                      model.errors = 'Sem rede';
+                      $localData.update($http, type, '__id', model);
+                      $scope.sendingData = false;
+                      send(callback);
+                  }
+              });
+      };
+
+      send(function(){
+          $scope.sendingData = false;            
+          if (success)
+          {
+              success();    
+          }            
+      });
+  };
+
+  /*
+   * Sincroniza em 5 mins
+   */
+  SEND_TIMEOUT = setTimeout(function(){
+      $scope.sendData();
+  }, 60000);
 };
+
