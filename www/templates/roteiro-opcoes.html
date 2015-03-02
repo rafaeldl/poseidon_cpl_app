@@ -92,6 +92,12 @@
                 {{ $helpers.toReal(roteiro.cliente_info.saldo_titulo) }}<span class="item-note">Saldo de títulos</span>
             </div>
 
+            <div class="item item-icon-left"
+                 ng-show="roteiro.cliente_info.inadimplencia">
+                <i class="icon ion-arrow-graph-down-right"></i>
+                {{ $helpers.toReal(roteiro.cliente_info.inadimplencia) }}<span class="item-note">Saldo de inadimplência</span>
+            </div>
+
             <div class="item item-icon-left">
                 <i class="icon ion-arrow-graph-up-right"></i>
                 {{ roteiro.cliente_info.media_atraso }} dias

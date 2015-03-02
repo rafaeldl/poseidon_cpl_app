@@ -12,7 +12,7 @@
             Sem roteiros para hoje
         </p>
         <table class="width-100">
-            <tr ng-repeat="item in listItens">
+            <tr ng-repeat="item in $parent.listItens">
                 <td>
                     <i class="ion-thumbsup big-icon icon-roteiro {{ item['status_pedidos'] == 3 ? 'error' : (item['status_pedidos'] == 2 ? 'success' : '') }}"
                        ng-if="item['status_pedidos']"></i>

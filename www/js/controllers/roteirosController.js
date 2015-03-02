@@ -1,1 +1,41 @@
-var roteirosController=function($scope,$http){if($scope.hideBackButton=!0,$scope.enableNext=function(list){for(var i in list){var item=list[i];if(item.done=!0,!item.status_pedidos&&!item.status_sem_pedidos&&!item.liberado)break}},localStorage.load_date){var date=new Date;date.setTime(parseInt(localStorage.load_date));var today=new Date;today.setHours(0),today.setMinutes(0),date.getTime()<today.getTime()&&(localStorage.roteiros="[]",localStorage.pedidos="[]",localStorage.sem_pedidos="[]")}else localStorage.load_date=""+(new Date).getTime();var loadRoteiros=function(loadRoteirosCallback){console.log("Load roteiros");var lastUpdate=localStorage.sync_roteiros,forceUpdate=!1;if(lastUpdate){var today=new Date,lastUpdate=new Date(parseInt(localStorage.sync_roteiros));lastUpdate.getDate()<today.getDate()&&(forceUpdate=!0)}else forceUpdate=!0;$scope.sendingData=!0,$scope.loading=!0,$localData.findAll($http,"roteiros",forceUpdate,function(response){$scope.listItens=response.data,$scope.enableNext($scope.listItens),$scope.loading=!1;var item,tabelas=[];for(var i in $scope.listItens)item=$scope.listItens[i],-1==tabelas.indexOf(item.tabela)&&(tabelas.push(item.tabela),$localData.findAll($http,"produtos",!1,null,"tabela="+item.tabela,"produtos-"+item.tabela));$localData.defaultQuery($http,"AC5",function(response){$localData.saveAll(response.data,"eventos"),$localData.defaultQuery($http,"Z1",function(response){$localData.saveAll(response.data,"produto-familias"),$localData.defaultQuery($http,"SE4",function(response){$localData.saveAll(response.data,"condicao-pagamento"),$localData.defaultQuery($http,"ZJ2",function(response){if($localData.saveAll(response.data,"forma-recebimento"),$scope.listItens.length){var percurso=$scope.listItens[0].percurso;$localData.defaultQuery($http,"SA1",function(response){$localData.saveAll(response.data,"clientes"),$scope.sendingData=!1},"filter=a1_zrota:"+percurso)}else $scope.sendingData=!1;loadRoteirosCallback&&loadRoteirosCallback()})})})})})};window.syncronize?loadRoteiros(function(){$scope.$parent.sendData()}):loadRoteiros()};
+var roteirosController = function($scope, $http) {
+
+    $scope.hideBackButton = true;
+    
+    if (localStorage['load_date'])
+    {
+        var date = new Date();
+        date.setTime(parseInt(localStorage['load_date']));
+        var today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        if (date.getTime() < today.getTime())
+        {
+            localStorage['roteiros'] = '[]';
+            localStorage['pedidos'] = '[]';
+            localStorage['sem_pedidos'] = '[]';
+            localStorage['load_date'] = "" + new Date().getTime();
+        }
+    }
+    else
+    {        
+        localStorage['load_date'] = "" + new Date().getTime();
+    }
+
+    /*
+     * Sincroniza ao salvar
+     */
+    if (window.syncronize)
+    {
+        $scope.$parent.loadRoteiros(false, function(){
+            $scope.$parent.sendData();    
+        });        
+    }
+    else
+    {
+        $scope.$parent.loadRoteiros(false);
+    }
+
+    
+
+};

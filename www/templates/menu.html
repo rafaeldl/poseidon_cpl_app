@@ -32,6 +32,11 @@
           <i class="icon ion-ios7-people menu-icon"></i>
           Clientes
         </ion-item>
+        <ion-item nav-clear menu-close ng-click="updateData()">
+          <i class="icon ion-arrow-swap menu-icon"></i>
+          <span ng-hide="updatingData">Atualizar dados</span>
+          <span ng-show="updatingData">Atualizando...</span>
+        </ion-item>
         <ion-item nav-clear menu-close ng-click="doLogoff()">
           <i class="icon ion-log-out menu-icon"></i>
           Sair

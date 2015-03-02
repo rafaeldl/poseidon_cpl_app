@@ -2,6 +2,14 @@
 
 ############################## CHANGE LOG ##############################
  
+  Versão 1.4
+
+  - Corrigidos pedidos duplicados;
+
+  - Adicionando dados de inadimplência do cliente
+
+  - Adicionado menu para atualizar dados sem limpar os pedidos 
+
   Versão 1.3
 
   - Melhorias na forma de enviar os pedidos;
